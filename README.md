@@ -2,6 +2,8 @@
 
 ## Approach
 
+It would be easiest to implement using Python 3 and requests.
+
 1.  Use the GitHub API to find the N-most popular projects on GitHub.
 2.  For each project, use the GitHub API to obtain a list of pull requests.
     Write the list to a JSON file (e.g., `data/pull-requests/php.json`),
