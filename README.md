@@ -9,7 +9,6 @@
     GitHub).
 3.  For each pull request (PR), determine whether that PR represents a bug fix.
     There are several ways to go about this:
-    \
       * look for an issue number in the PR description (e.g., "fixes #238").
       * use regex to look for indicative keywords (e.g., "bug" and "fix").
       * use Travis to find regressions (does the build change from failing
