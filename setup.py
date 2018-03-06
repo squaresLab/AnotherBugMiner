@@ -21,6 +21,12 @@ setup(
     author_email='TBA',
     url='https://github.com/squaresLab/AnotherBugMiner',
     license='mit',
+    setup_requires=[
+        'pytest-runner'
+    ],
+    tests_require=[
+        'pytest'
+    ],
     install_requires=[
         'requests',
         'pyyaml'
