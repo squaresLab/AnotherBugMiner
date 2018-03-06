@@ -1,21 +1,19 @@
 #!/usr/bin/env python3
+import os
 from glob import glob
 from setuptools import setup, find_packages
 
 
-PACKAGE_NAME = 'abm'
-
-
 # loads __version__ from version submodule
-path = os.path.join(os.path.dirname(__file__),
-                    PACKAGE_NAME,
-                    'version.py')
+package_name = 'abm'
+path = \
+    os.path.join(os.path.dirname(__file__), 'src', package_name, 'version.py')
 with open(path, 'r') as f:
     exec(f.read())
 
 
 setup(
-    name='abm',
+    name=package_name,
     version=__version__,
     description='TBA',
     long_description='TBA',
@@ -27,6 +25,7 @@ setup(
         'requests',
         'pyyaml'
     ],
+    test_suite = 'tests',
     include_package_data=True,
     packages=find_packages('src'),
     package_dir={'': 'src'},
@@ -34,5 +33,4 @@ setup(
 #    entry_points = {
 #        'console_scripts': [ 'abm = abm.cli:main' ]
 #    },
-#    test_suite = 'tests'
 )
