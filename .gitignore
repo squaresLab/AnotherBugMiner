@@ -1,7 +1,8 @@
 # venv
 bin
 lib
-pyenv.cfg
+lib64
+pyvenv.cfg
 share
 
 *.swp
