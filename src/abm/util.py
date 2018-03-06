@@ -1,4 +1,7 @@
-def travis_build_url_to_github_commit(build_url: str) -> [str, str]:
+from typing import Tuple
+
+
+def travis_build_url_to_github_commit(build_url: str) -> Tuple[str, str]:
     """
     Accepts the URL of a (public) Travis build
     (e.g., https://travis-ci.org/squaresLab/genprog-code/builds/336578196),
