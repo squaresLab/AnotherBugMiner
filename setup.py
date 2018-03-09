@@ -32,7 +32,6 @@ setuptools.setup(
         'pyyaml'
     ],
     test_suite='tests',
-    include_package_data=True,
     packages=setuptools.find_packages('src'),
     package_dir={'': 'src'},
     py_modules=[os.path.splitext(os.path.basename(path))[0]
