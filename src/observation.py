@@ -1,16 +1,23 @@
 from typing import List
+import csv
 
 
 class Observation(object):
     def __init__(self,
+                 url_repository: str,
                  commit_bug: str,
                  build_url_bug: str,
                  commit_sha_fix: str,
                  build_url_fix: str):
+        self.__url_repository = url_repository
         self.__commit_bug = commit_bug
         self.__build_url_bug = build_url_bug
         self.__commit_fix = commit_sha_fix
         self.__url_fix_build_url = build_url_fix
+
+    @property
+    def repository(self) -> str:
+        return self.__url_repository
 
     @property
     def commit_bug(self) -> str:
@@ -35,3 +42,19 @@ class ObservationCollection(object):
 
     def __iter__(self) -> Iterator[Observation]:
         return self.__observations.__iter__()
+
+    def save(self, fn: str) -> None:
+        with open(fn, 'w') as f:
+            writer = csv.writer(f)
+            writer.writerow(["Repository URL",
+                             "Bug Commit",
+                             "Bug Build URL",
+                             "Fix Commit",
+                             "Fix Build URL"])
+            for observation in self.__observations:
+                row = [observation.repository,
+                       observation.commit_bug,
+                       observation.build_url_bug,
+                       observation.commit_fix,
+                       observation.build_url_fix]
+                writer.writerow(row)
