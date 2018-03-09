@@ -37,6 +37,15 @@ class Observation(object):
 
 
 class ObservationCollection(object):
+    @staticmethod
+    def load(fn: str) -> 'ObservationCollection':
+        observations = []
+        with open(fn, 'r') as f:
+            reader = csv.reader(f)
+            for row in reader[1:]:
+                observation = Observation(*row)
+        return ObservationCollection(observations)
+
     def __init__(self, observations: List[Observation]):
         self.__observations = observations[:]
 
