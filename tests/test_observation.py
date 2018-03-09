@@ -1,9 +1,11 @@
+import os
+
 import pytest
 
 from abm.observation import Observation, ObservationCollection
 
 
-def test_getters():
+def test_properties():
     url_repository='http://github.com/squaresLab/genprog-code'
     commit_bug = '3cd6c6e6a1f20b41fc5ef928f80d9e54151c96d9'
     build_url_bug='https://travis-ci.org/squaresLab/Houston/builds/349623956'
@@ -21,3 +23,8 @@ def test_getters():
     assert observation.build_url_bug == build_url_bug
     assert observation.commit_fix == commit_fix
     assert observation.build_url_fix == build_url_fix
+
+
+def test_load():
+    fn = os.path.join(os.path.dirname(__file__), 'observation/bugs.csv')
+    observations = ObservationCollection.load(fn)
