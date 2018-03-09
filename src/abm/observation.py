@@ -1,4 +1,4 @@
-from typing import List
+from typing import List, Iterator
 import csv
 
 
@@ -13,7 +13,7 @@ class Observation(object):
         self.__commit_bug = commit_bug
         self.__build_url_bug = build_url_bug
         self.__commit_fix = commit_sha_fix
-        self.__url_fix_build_url = build_url_fix
+        self.__build_url_fix = build_url_fix
 
     @property
     def repository(self) -> str:
