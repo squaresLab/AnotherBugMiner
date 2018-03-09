@@ -13,7 +13,7 @@ with open(path, 'r') as f:
 
 
 setup(
-    name=package_name,
+    name='abm',
     version=__version__,
     description='TBA',
     long_description='TBA',
