@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 import os
-from glob import glob
-from setuptools import setup, find_packages
+import glob
+import setuptools
 
 
 # loads __version__ from version submodule
@@ -12,8 +12,8 @@ with open(path, 'r') as f:
     exec(f.read())
 
 
-setup(
-    name='abm',
+setuptools.setup(
+    name=package_name,
     version=__version__,
     description='TBA',
     long_description='TBA',
@@ -33,8 +33,8 @@ setup(
     ],
     test_suite='tests',
     include_package_data=True,
-    packages=find_packages('src'),
+    packages=setuptools.find_packages('src'),
     package_dir={'': 'src'},
     py_modules=[os.path.splitext(os.path.basename(path))[0]
-                for path in glob('src/*.py')]
+                for path in glob.glob('src/*.py')]
 )
