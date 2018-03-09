@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Observation(object):
     def __init__(self,
                  commit_bug: str,
@@ -24,3 +27,11 @@ class Observation(object):
     @property
     def build_url_fix(self) -> str:
         return self.__build_url_fix
+
+
+class ObservationCollection(object):
+    def __init__(self, observations: List[Observation]):
+        self.__observations = observations[:]
+
+    def __iter__(self) -> Iterator[Observation]:
+        return self.__observations.__iter__()
