@@ -52,6 +52,9 @@ class ObservationCollection(object):
     def __iter__(self) -> Iterator[Observation]:
         return self.__observations.__iter__()
 
+    def __len__(self) -> int:
+        return len(self.__observations)
+
     def save(self, fn: str) -> None:
         with open(fn, 'w') as f:
             writer = csv.writer(f)
