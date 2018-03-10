@@ -41,8 +41,9 @@ class ObservationCollection(object):
     def load(fn: str) -> 'ObservationCollection':
         observations = []
         with open(fn, 'r') as f:
-            reader = csv.writer(f)
-            for row in reader[1:]:
+            reader = csv.reader(f)
+            next(reader, None) # skip header
+            for row in reader:
                 observation = Observation(*row)
         return ObservationCollection(observations)
 
