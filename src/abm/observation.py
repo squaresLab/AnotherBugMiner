@@ -45,6 +45,7 @@ class ObservationCollection(object):
             next(reader, None) # skip header
             for row in reader:
                 observation = Observation(*row)
+                observations.append(observation)
         return ObservationCollection(observations)
 
     def __init__(self, observations: List[Observation]):
