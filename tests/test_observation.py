@@ -30,3 +30,11 @@ def test_load():
     observations = ObservationCollection.load(fn)
 
     assert len(observations) == 1
+
+    contents = list(observations)
+    entry = contents[0]
+    assert entry.repository == 'https://github.com/IQSS/dataverse'
+    assert entry.commit_bug == 'ba64c543701f1942bff3ee39677d1a4932b32c25'
+    assert entry.build_url_bug == 'https://travis-ci.org/IQSS/dataverse/jobs/289573808'
+    assert entry.commit_fix == '5a53fa0f42b88b614685ebfd72ad47428f1c2028'
+    assert entry.build_url_fix == 'https://travis-ci.org/IQSS/dataverse/builds/289591312'
