@@ -28,3 +28,5 @@ def test_properties():
 def test_load():
     fn = os.path.join(os.path.dirname(__file__), 'observation/bugs.csv')
     observations = ObservationCollection.load(fn)
+
+    assert len(observations) == 1
