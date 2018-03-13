@@ -7,12 +7,12 @@ class Observation(object):
                  url_repository: str,
                  commit_bug: str,
                  build_url_bug: str,
-                 commit_sha_fix: str,
+                 commit_fix: str,
                  build_url_fix: str) -> None:
         self.__url_repository = url_repository
         self.__commit_bug = commit_bug
         self.__build_url_bug = build_url_bug
-        self.__commit_fix = commit_sha_fix
+        self.__commit_fix = commit_fix
         self.__build_url_fix = build_url_fix
 
     @property
