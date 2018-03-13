@@ -8,7 +8,7 @@ class Observation(object):
                  commit_bug: str,
                  build_url_bug: str,
                  commit_sha_fix: str,
-                 build_url_fix: str):
+                 build_url_fix: str) -> None:
         self.__url_repository = url_repository
         self.__commit_bug = commit_bug
         self.__build_url_bug = build_url_bug
@@ -48,7 +48,7 @@ class ObservationCollection(object):
                 observations.append(observation)
         return ObservationCollection(observations)
 
-    def __init__(self, observations: List[Observation]):
+    def __init__(self, observations: List[Observation]) -> None:
         self.__observations = observations[:]
 
     def __iter__(self) -> Iterator[Observation]:
