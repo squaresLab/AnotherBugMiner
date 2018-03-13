@@ -1,4 +1,5 @@
 import pytest
+
 from abm.util import travis_build_url_to_github_commit, \
                      github_commit_to_travis_build_url
 
