@@ -1,1 +1,9 @@
-### REPLACE LINE WITH GITHUB TOKEN ###
+### REPLACE THIS FILE WITH A GITHUB TOKEN ###
+Generate at https://github.com/settings/tokens/new
+TravisPy requires a token with the following scopes:
+
+read:org
+user:email
+repo_deployment
+repo:status
+write:repo_hook
