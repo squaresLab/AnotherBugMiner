@@ -1,5 +1,28 @@
+import os
 from typing import Tuple
+from travispy import TravisPy
+from urllib.parse import urlparse
 
+# Project base directory. Assumes that this file is in src/abm/
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+# Authorize with GitHub
+with open(os.path.join(BASE_DIR, 'etc/token.txt')) as f:
+    token = TravisPy.github_auth(f.read().strip())
+    user = token.user()
+
+
+def parse_travis_url(travis_url:str) -> Tuple[str, str]:
+    """
+    Accepts the URL of a (public) Travis build and returns a pair of the form
+    `(repo_name, build_id)`, where `repo_name` is the name of the repo on
+    Travis and `build_id` is the id of the build in the URL.
+    """
+    parsed = urlparse(travis_url)
+    # path will be of the form /[repo_name]/builds/[build_id]
+    repo_name, build_id = parsed.path.split('/builds/')
+    # Drops the leading slash of repo_name after the split
+    return (repo_name[1:], build_id)
 
 def travis_build_url_to_github_commit(build_url: str) -> Tuple[str, str]:
     """
