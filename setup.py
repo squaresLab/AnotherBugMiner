@@ -24,7 +24,8 @@ setuptools.setup(
         'pytest-runner'
     ],
     tests_require=[
-        'pytest'
+        'pytest',
+        'travispy'
     ],
     install_requires=[
         'requests',
