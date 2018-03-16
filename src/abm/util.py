@@ -6,11 +6,16 @@ from urllib.parse import urlparse
 # Project base directory. Assumes that this file is in src/abm/
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-# Authorize with GitHub
-with open(os.path.join(BASE_DIR, 'etc/token.txt')) as f:
-    token = TravisPy.github_auth(f.read().strip())
-    user = token.user()
+# KeyError if doesn't exist
 
+# Authorize with GitHub. Try to read from the GITHUB_TOKEN environment variable
+# and then try to read from etc/token.txt if that doesn't work.
+try:
+    token = TravisPy.github_auth(os.environ['GITHUB_TOKEN'])
+except KeyError:
+    with open(os.path.join(BASE_DIR, 'etc/token.txt')) as f:
+        token = TravisPy.github_auth(f.read().strip())
+user = token.user()
 
 def parse_github_url(github_url:str) -> str:
     """
