@@ -12,7 +12,16 @@ with open(os.path.join(BASE_DIR, 'etc/token.txt')) as f:
     user = token.user()
 
 
-def parse_travis_url(travis_url:str) -> Tuple[str, str]:
+def parse_github_url(github_url:str) -> str:
+    """
+    Accepts the URL of a (public) GitHub repository and returns the slug of the
+    repository, which is used to identify the repo by both GitHub and Travis.
+    """
+    parsed = urlparse(github_url)
+    return parsed.path[1:]
+
+
+def parse_travis_build_url(travis_url:str) -> Tuple[str, str]:
     """
     Accepts the URL of a (public) Travis build and returns a pair of the form
     `(repo_slug, build_id)`, where `repo_slug` is the slug of the repo on
@@ -34,7 +43,7 @@ def travis_build_url_to_github_commit(build_url: str) -> Tuple[str, str]:
     `sha` is the hex. SHA (e.g., f9c6cb57e8ab2d8f07604946cd2cd570274ace04) of
     the commit associated with the given Travis build.
     """
-    repo_slug, build_id = parse_travis_url(build_url)
+    repo_slug, build_id = parse_travis_build_url(build_url)
     repo = token.repo(repo_slug)
     build = token.build(build_id)
     gh_url = 'https://github.com/' + repo_slug
