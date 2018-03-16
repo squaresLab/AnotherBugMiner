@@ -4,7 +4,6 @@ from abm.util import travis_build_url_to_github_commit, \
                      github_commit_to_travis_build_url
 
 
-@pytest.mark.xfail(reason='unimplemented functionality')
 def test_travis_build_url_to_github_commit():
     f = travis_build_url_to_github_commit
     assert f('https://travis-ci.org/aerogear/aerogear-unifiedpush-server/builds/219758017') \
