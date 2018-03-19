@@ -11,7 +11,6 @@ def test_travis_build_url_to_github_commit():
             'ad3b7a94838f4808f51c25e07717709f97f41cb1')
 
 
-@pytest.mark.xfail(reason='unimplemented functionality')
 def test_github_commit_to_travis_build_url():
     f = github_commit_to_travis_build_url
 
