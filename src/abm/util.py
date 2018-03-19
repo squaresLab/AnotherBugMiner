@@ -69,10 +69,21 @@ def github_commit_to_travis_build_url(repo: str, commit: str) -> str:
     """
     repo_slug = parse_github_url(repo)
     repo = token.repo(repo_slug)
+    last_build_num = int(repo.last_build_number)
 
     # From the TravisPy docs:
     # "There is no API endpoint for resolving commits, however commit data
     # might be included in other API entities, like Build or Job."
     # I think this means that we have to do a dumb linear search of all of
     # the builds in the repo to find the one that corresponds to this commit.
-    raise NotImplementedError
+    current_build_num = last_build_num
+    # Dumb linear search
+    while True:
+        builds = [build.id for build in
+                  token.builds(slug=repo_slug, after_number=current_build_num + 1)
+                  if build.commit.sha == commit]
+        if builds:
+            found_id = builds[0]
+            break
+        current_build_num -= 25
+    return "https://travis-ci.org/" + repo_slug + "/builds/" + str(found_id)
